@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PUNTO.PUNTO.-RAYA</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 15%; background-color: #1a1a1a; color: white; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 20%; background-color: #1a1a1a; color: white; }
         .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 20px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
     </style>
 </head>
@@ -16,13 +16,16 @@
     <a id="btn-intent" class="btn" href="#">ENTRAR AL JUEGO</a>
 
     <script>
-        var params = window.location.search; // Esto trae el "?code=..." de Google
+        var params = window.location.search;
         var paquete = "com.jgsgames.puntoraya";
         
-        // Enlace perfecto para que Android no lo mande a la tienda
-        var urlIntent = "intent://login/" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
+        // Este Intent es una orden militar: Le dice a Android EXACTAMENTE qué parámetros usar para obligar a la app a abrirse.
+        var urlIntent = "intent://login" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";action=android.intent.action.VIEW;category=android.intent.category.DEFAULT;category=android.intent.category.BROWSABLE;end";
         
         document.getElementById("btn-intent").href = urlIntent;
+
+        // Auto-click
+        setTimeout(function() { document.getElementById("btn-intent").click(); }, 1500);
     </script>
 </body>
 </html>

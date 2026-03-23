@@ -5,30 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PUNTO.PUNTO.-RAYA</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 15%; background-color: #1a1a1a; color: white; }
-        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 18px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
-        .btn-fuerza { background-color: #b30000; } /* Botón rojo para la fuerza bruta */
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 20%; background-color: #1a1a1a; color: white; }
+        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 20px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
     </style>
 </head>
 <body>
     <h2>¡AUTENTICACIÓN EXITOSA!</h2>
-    <p>Prueba el botón dorado. Si vas a la Play Store, regresa y prueba el ROJO.</p>
+    <p>Toca el botón para regresar al juego</p>
     
-    <a id="btn-normal" class="btn" href="#">1. ENTRAR AL JUEGO</a>
-    <a id="btn-forzado" class="btn btn-fuerza" href="#">2. FORZAR ENTRADA</a>
+    <a id="btn-puro" class="btn" href="#">ENTRAR AL JUEGO</a>
 
     <script>
-        var params = window.location.search; // Esto trae el ?code=...
-        var paquete = "com.jgsgames.puntoraya";
+        var params = window.location.search;
         
-        // 1. Enlace normal (el que hemos estado usando)
-        var urlNormal = "intent://login" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
+        // Enlace directo, sin intermediarios
+        var urlPura = "puntoraya://login" + params;
         
-        // 2. ENLACE DE FUERZA BRUTA (Llama directamente a la ventana .GodotApp)
-        var urlForzada = "intent://login" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";component=" + paquete + "/.GodotApp;end";
-        
-        document.getElementById("btn-normal").href = urlNormal;
-        document.getElementById("btn-forzado").href = urlForzada;
+        document.getElementById("btn-puro").href = urlPura;
     </script>
 </body>
 </html>

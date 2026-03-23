@@ -21,9 +21,9 @@
             var params = window.location.search;
             var paquete = "com.jgsgames.puntoraya";
             
-            // El enlace "Misil": busca el esquema puntoraya con el host login
-            var intentUrl = "intent://login/" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
-            
+            // Asegúrate de que la URL se construya con una / después de 'login'
+			var intentUrl = "intent://login/#Intent;scheme=puntoraya;package=com.jgsgames.puntoraya;end";            
+			
             window.location.href = intentUrl;
         });
 

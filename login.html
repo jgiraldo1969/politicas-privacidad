@@ -1,4 +1,4 @@
-}<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,19 +13,17 @@
     <h2>¡Inicio de sesión exitoso!</h2>
     <p>Por favor, presiona el botón para volver a PUNTO.PUNTO.-RAYA</p>
     
-    <a id="btn-regresar" class="btn" href="#">VOLVER AL JUEGO</a>
+	<a id="btn-regresar" class="btn" href="#" onclick="saltarAlJuego(); return false;">VOLVER AL JUEGO</a>
 
     <script>
-        // 1. Armamos el enlace con el código secreto de Google
-        var enlaceJuego = "puntoraya://login" + window.location.search;
-        
-        // 2. Se lo inyectamos al botón
-        document.getElementById("btn-regresar").href = enlaceJuego;
+        // Función que se dispara EXACTAMENTE cuando tu dedo toca el botón
+        function saltarAlJuego() {
+            var enlaceJuego = "puntoraya://login" + window.location.search;
+            window.location.replace(enlaceJuego);
+        }
 
-        // 3. Intentamos hacer el salto automático (por si Chrome nos deja)
-        setTimeout(function() {
-            window.location.href = enlaceJuego;
-        }, 800);
+        // Intento de salto automático a los 2 segundos (por si acaso)
+        setTimeout(saltarAlJuego, 2000);
     </script>
 </body>
 </html>

@@ -6,29 +6,23 @@
     <title>PUNTO.PUNTO.-RAYA</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 15%; background-color: #1a1a1a; color: white; }
-        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 18px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
-        .btn-secundario { background-color: #555; border-color: #888; }
+        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 20px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
     </style>
 </head>
 <body>
     <h2>¡AUTENTICACIÓN EXITOSA!</h2>
-    <p>Toca uno de los botones para regresar</p>
+    <p>Toca el botón para regresar</p>
     
-    <a id="btn-intent" class="btn" href="#">OPCIÓN 1: ENTRAR AL JUEGO</a>
-    <a id="btn-directo" class="btn btn-secundario" href="#">OPCIÓN 2: ENTRAR AL JUEGO</a>
+    <a id="btn-intent" class="btn" href="#">ENTRAR AL JUEGO</a>
 
     <script>
-        // Obtenemos los datos de Google
-        var params = window.location.search;
+        var params = window.location.search; // Esto trae el "?code=..." de Google
         var paquete = "com.jgsgames.puntoraya";
         
-        // Construimos las dos URL
-        var urlIntent = "intent://login" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
-        var urlDirecta = "puntoraya://login" + params;
+        // Enlace perfecto para que Android no lo mande a la tienda
+        var urlIntent = "intent://login/" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
         
-        // Se las inyectamos directamente a los enlaces
         document.getElementById("btn-intent").href = urlIntent;
-        document.getElementById("btn-directo").href = urlDirecta;
     </script>
 </body>
 </html>

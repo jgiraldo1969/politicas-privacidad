@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PUNTO.PUNTO.-RAYA</title>
+    <title>PUNTO.PUNTO.-RAYA | Login</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 20%; background-color: #1a1a1a; color: white; }
-        .btn { display: inline-block; padding: 20px 40px; font-size: 22px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; cursor: pointer; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin-top: 20%; background-color: #1a1a1a; color: white; }
+        .btn { display: inline-block; padding: 20px 40px; font-size: 22px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; cursor: pointer; transition: transform 0.2s; }
+        .btn:active { transform: scale(0.95); }
+        p { color: #aaaaaa; margin-top: 20px; }
     </style>
 </head>
 <body>
     <h2>¡AUTENTICACIÓN EXITOSA!</h2>
-    <p>Presiona el botón para volver al combate</p>
+    <p>Haz clic en el botón para volver al juego y empezar la batalla.</p>
     
-    <a id="btn-regresar" class="btn">ENTRAR AL JUEGO</a>
+    <button id="btn-regresar" class="btn">VOLVER AL JUEGO</button>
 
     <script>
         document.getElementById("btn-regresar").addEventListener("click", function() {
             var params = window.location.search;
+            var paquete = "com.jgsgames.puntoraya";
             
-            var paquete = "com.jgsgames.puntoraya"; 
+            // Intentamos el enlace directo tipo Intent
+            // Formato: intent://[host]#[Intent];scheme=[esquema];package=[paquete];end
+            var intentUrl = "intent://login" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";end";
             
-            // Este es el enlace "Misil": si la app está instalada, se abre sí o sí
-            var intentUrl = "intent://login/" + params + "#Intent;scheme=puntoraya;package=" + paquete + ";S.browser_fallback_url=https://jgiraldo1969.github.io/index.html;end";
-            
+            // Intentamos también el esquema simple por si acaso
+            var esquemaSimple = "puntoraya://login" + params;
+
+            // Disparamos primero el Intent
             window.location.href = intentUrl;
+
+            // Si en 1 segundo no ha pasado nada, probamos el esquema simple
+            setTimeout(function() {
+                window.location.href = esquemaSimple;
+            }, 1000);
         });
 
-        // Intento automático
-        setTimeout(function() { document.getElementById("btn-regresar").click(); }, 1500);
+        // Intento automático a los 2 segundos
+        setTimeout(function() {
+            document.getElementById("btn-regresar").click();
+        }, 2000);
     </script>
 </body>
 </html>

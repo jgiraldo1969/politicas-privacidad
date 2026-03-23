@@ -6,7 +6,7 @@
     <title>PUNTO.PUNTO.-RAYA</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 20%; background-color: #1a1a1a; color: white; }
-        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 20px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; }
+        .btn { display: block; padding: 20px; margin: 20px auto; width: 80%; font-size: 20px; font-weight: bold; color: white; background-color: #d4af37; text-decoration: none; border-radius: 50px; border: 3px solid white; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -16,12 +16,19 @@
     <a id="btn-puro" class="btn" href="#">ENTRAR AL JUEGO</a>
 
     <script>
-        var params = window.location.search;
-        
-        // Enlace directo, sin intermediarios
-        var urlPura = "puntoraya://login" + params;
-        
-        document.getElementById("btn-puro").href = urlPura;
+        document.getElementById("btn-puro").addEventListener("click", function(event) {
+            // Evitamos que el botón haga cosas raras
+            event.preventDefault(); 
+            
+            var params = window.location.search;
+            var urlPura = "puntoraya://login" + params;
+            
+            // Te mostramos esta alerta para confirmar que el botón funciona
+            alert("Chrome va a intentar abrir este enlace:\n" + urlPura);
+            
+            // Intentamos hacer el salto
+            window.location.href = urlPura;
+        });
     </script>
 </body>
 </html>
